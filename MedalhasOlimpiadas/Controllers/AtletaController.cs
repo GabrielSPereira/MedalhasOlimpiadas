@@ -60,12 +60,12 @@ namespace MedalhasOlimpiadas.Controllers
             }
         }
 
-        public System.Web.Mvc.ContentResult AtletaAjaxForm(int id)
+        public System.Web.Mvc.ContentResult AtletaAjaxForm(int id) //Requisição Post do cria e detalhes do Atleta
         {
             try
             {
                 EntAtleta objAtleta = null;
-                if (id > 0)
+                if (id > 0) //Faz a verificação para ver se já no banco (preenche os campos do formulário de cadastro)
                 {
                     objAtleta = new BllAtleta().ObterPorId(id);
                 }
@@ -75,7 +75,7 @@ namespace MedalhasOlimpiadas.Controllers
                     objAtleta.Ativo = true;
                 }
 
-                return HtmlCreator.CriaForm("Atleta", objAtleta, objAtleta.IdAtleta);
+                return HtmlCreator.CriaForm("Atleta", objAtleta, objAtleta.IdAtleta); //Chama o método de criar o forumlário
             }
             catch (Exception ex)
             {
@@ -85,16 +85,16 @@ namespace MedalhasOlimpiadas.Controllers
         }
 
         [HttpPost]
-        public ActionResult AtletaSalvar(IFormCollection collection)
+        public ActionResult AtletaSalvar(IFormCollection collection) //Através da collection ele recebe os dados do formulário
         {
             try
             {
                 EntAtleta objAtleta = new EntAtleta();
-                AtletaPageToObject(objAtleta, collection);
+                AtletaPageToObject(objAtleta, collection); //Chama o método para alimentar o objeto Atleta
 
                 try
                 {
-                    if (objAtleta.IdAtleta == 0)
+                    if (objAtleta.IdAtleta == 0) //Verifica se é um cadastro ou edição pelo IdAtleta
                     {
                         objAtleta = new BllAtleta().Inserir(objAtleta);
                     }
@@ -108,7 +108,7 @@ namespace MedalhasOlimpiadas.Controllers
                     return Content(ex.Message);
                 }
 
-                return Redirect("/Atleta");
+                return Redirect("/Atleta"); //Redireciona para a Padrão após a execução do inserir ou alterar
             }
             catch (Exception ex)
             {
@@ -118,7 +118,7 @@ namespace MedalhasOlimpiadas.Controllers
 
         private void AtletaPageToObject(EntAtleta objAtleta, IFormCollection collection)
         {
-            objAtleta.IdAtleta = Utils.ToInt32(collection["hdnIdAtleta"]);
+            objAtleta.IdAtleta = Utils.ToInt32(collection["hdnIdAtleta"]); //Dados vindos do formulário, nesse caso se não tivermos IdAtleta, ou seja, é um novo cadastro
             objAtleta.Modalidade.IdModalidade = Utils.ToInt32(collection["dllModalidade"]);
             objAtleta.Pais.IdPais = Utils.ToInt32(collection["dllPais"]);
             objAtleta.Nome = collection["txtNome"];

@@ -13,10 +13,10 @@ namespace MedalhasOlimpiadas.Models
     {
         public void Inserir(EntAtleta objAtleta, SqlCommand db)
         {
-            SqlCommand scCommand = new SqlCommand("STP_AtletaInserir", db.Connection);
+            SqlCommand scCommand = new SqlCommand("STP_AtletaInserir", db.Connection); //Chama a Procedure responsável pela inserção do atleta
             scCommand.CommandType = CommandType.StoredProcedure;
 
-            scCommand.Parameters.Add("@PK_ATLETA", SqlDbType.Int).Value = objAtleta.IdAtleta;
+            scCommand.Parameters.Add("@PK_ATLETA", SqlDbType.Int).Value = objAtleta.IdAtleta; //Passa os Parâmetros necessários para a tabela atleta
             scCommand.Parameters.Add("@FK_MODALIDADE", SqlDbType.Int).Value = objAtleta.Modalidade.IdModalidade;
             scCommand.Parameters.Add("@FK_PAIS", SqlDbType.Int).Value = objAtleta.Pais.IdPais;
             scCommand.Parameters.Add("@TX_NOME", SqlDbType.VarChar).Value = objAtleta.Nome;
@@ -55,16 +55,16 @@ namespace MedalhasOlimpiadas.Models
             SqlCommand scCommand = new SqlCommand("STP_AtletaSelecionarTodos", db.Connection);
             scCommand.CommandType = CommandType.StoredProcedure;
 
-            scCommand.Parameters.Add("@IdModalidade", SqlDbType.Int).Value = Utils.ToIntNull(IdModalidade);
-            scCommand.Parameters.Add("@IdPais", SqlDbType.Int).Value = Utils.ToIntNull(IdPais);
+            scCommand.Parameters.Add("@IdModalidade", SqlDbType.Int).Value = Utils.ToIntNull(IdModalidade); //Passa os Parâmetros de busca
+            scCommand.Parameters.Add("@IdPais", SqlDbType.Int).Value = Utils.ToIntNull(IdPais); //Por exemplo, caso o usuário não queira buscar por país através do método ToIntNull ele retorna o valor como nulo
             scCommand.Parameters.Add("@Nome", SqlDbType.VarChar).Value = Nome;
             scCommand.Parameters.Add("@Status", SqlDbType.Bit).Value = Utils.ToBooleanNull(Status);
 
             SqlDataReader reader = scCommand.ExecuteReader();
 
-            if (reader.FieldCount > 0)
+            if (reader.FieldCount > 0) //Caso retorne algo entra no IF
             {
-                return this.Popular(reader);
+                return this.Popular(reader); //Chama o método responsável por montar a lista de objetos Atleta
             }
             else
             {
@@ -79,11 +79,11 @@ namespace MedalhasOlimpiadas.Models
 
             try
             {
-                while (dtrDados.Read())
+                while (dtrDados.Read()) //Faz o while com a quantidade de linhas retornadas do banco
                 {
                     entReturn = new EntAtleta();
 
-                    entReturn.IdAtleta = (int) dtrDados["PK_ATLETA"];
+                    entReturn.IdAtleta = (int) dtrDados["PK_ATLETA"]; //Alimenta os dados
                     entReturn.Modalidade.IdModalidade = (int) dtrDados["FK_MODALIDADE"];
                     entReturn.Modalidade.Modalidade = dtrDados["TX_MODALIDADE"].ToString();
                     entReturn.Nome = dtrDados["TX_NOME"].ToString();
@@ -114,7 +114,7 @@ namespace MedalhasOlimpiadas.Models
 
             if (reader.FieldCount > 0)
             {
-                return this.Popular(reader)[0];
+                return this.Popular(reader)[0]; //Pega somente a primeira linha de retorno
             }
             else
             {

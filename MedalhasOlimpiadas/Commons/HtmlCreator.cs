@@ -92,19 +92,19 @@ namespace MedalhasOlimpiadas.Commons
             };
         }
 
-        public static ContentResult CriaForm<T>(String entidade, T obj, Int32 Id)
+        public static ContentResult CriaForm<T>(String entidade, T obj, Int32 Id) //Método para criação do Form
         {
             HtmlHelperCreator htmlCreator = new HtmlHelperCreator();
-            List<EntModalidade> listaModalidade = new BllModalidade().ObterTodos("", 2, 1);
+            List<EntModalidade> listaModalidade = new BllModalidade().ObterTodos("", 2, 1); //Obtém todas as listas necessárias para os selects
             List<EntPais> listaPais = new BllPais().ObterTodos("", 1);
             List<EntAtleta> listaAtleta = new BllAtleta().ObterTodos(0, 0, "", 1);
             List<EntTipoMedalha> listaTipoMedalha = new BllTipoMedalha().ObterTodos(1);
-            StringBuilder form = new StringBuilder("<form action='/" + entidade + "/" + entidade + "Salvar' method='post' id='formDetalhes'>");
+            StringBuilder form = new StringBuilder("<form action='/" + entidade + "/" + entidade + "Salvar' method='post' id='formDetalhes'>"); //Criação do formulário de Criação ou alteração
             form.Append("<h2>Cadastro de " + entidade);
             form.Append("<hr/>");
             form.Append("<input type='hidden' id='hdnId" + entidade + "' name='hdnId" + entidade + "' value='" + Id + "'>");
 
-            if (entidade == "Atleta")
+            if (entidade == "Atleta") //Verificação para criação inputs d formulário de cadastro ou alteração
             {
                 form.Append("<div class='form-row'>");
                 htmlCreator.CelulaInput(form, "Nome", (obj as EntAtleta).Nome);

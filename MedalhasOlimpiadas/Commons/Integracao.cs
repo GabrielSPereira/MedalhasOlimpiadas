@@ -12,13 +12,13 @@ namespace MedalhasOlimpiadas.Commons
     {
         public static EntPais PesquisaBandeira(EntPais obj)
         {
-            var client = new RestClient("https://restcountries.eu/rest/v2/alpha/" + obj.Sigla);
+            var client = new RestClient("https://restcountries.eu/rest/v2/alpha/" + obj.Sigla); //URL da API
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
+            IRestResponse response = client.Execute(request); //Faz a requisição GET 
 
-            dynamic dynamicObject = JsonConvert.DeserializeObject(response.Content);
-            obj.Bandeira = dynamicObject["flag"];
+            dynamic dynamicObject = JsonConvert.DeserializeObject(response.Content); // Transforma o response JSON da API em objeto
+            obj.Bandeira = dynamicObject["flag"]; //Pega apenas o campo flag
 
             return obj;
         }

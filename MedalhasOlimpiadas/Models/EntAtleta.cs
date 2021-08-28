@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MedalhasOlimpiadas.Models
 {
-    public class EntAtleta
+    public class EntAtleta //Atributos de Atletas
     {
         public Int32 IdAtleta { get; set; }
         public String Nome { get; set; }

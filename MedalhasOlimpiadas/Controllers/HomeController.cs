@@ -29,7 +29,7 @@ namespace MedalhasOlimpiadas.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public System.Web.Mvc.ContentResult HomeFiltro(IFormCollection collection)
+        public System.Web.Mvc.ContentResult HomeFiltro(IFormCollection collection) //Requisição POST do Método de pesquisa
         {
             try
             {
@@ -37,11 +37,11 @@ namespace MedalhasOlimpiadas.Controllers
                 String filtroIsMulher = "2";
                 if (collection != null)
                 {
-                    filtroModalidade = collection["ddlModalidade"];
+                    filtroModalidade = collection["ddlModalidade"]; //Campos utilizados no formulário de pesquisa
                     filtroIsMulher = collection["ddlIsMulher"];
                 }
 
-                List<EntMedalha> ListaGrid = new BllMedalha().ObterTodosPorMedalha(Utils.ToInt32(filtroModalidade), Utils.ToInt32(filtroIsMulher));
+                List<EntMedalha> ListaGrid = new BllMedalha().ObterTodosPorMedalha(Utils.ToInt32(filtroModalidade), Utils.ToInt32(filtroIsMulher)); //Obtém o quadro de medalhas levando em consideração o grid Pesquisa
                 foreach (EntMedalha obj in ListaGrid)
                 {
                     obj.Atleta.Pais = new BllPais().ObterPorId(obj.Atleta.Pais.IdPais);

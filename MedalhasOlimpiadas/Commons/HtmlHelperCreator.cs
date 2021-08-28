@@ -7,7 +7,7 @@ using MedalhasOlimpiadas.Models;
 
 namespace MedalhasOlimpiadas.Commons
 {
-    public class HtmlHelperCreator
+    public class HtmlHelperCreator //Método que ajuda na criação de grids e forms, criando inputs, selects, botões e mais...
     {
         public StringBuilder CelulaInput(StringBuilder form, String entidade, String valor)
         {

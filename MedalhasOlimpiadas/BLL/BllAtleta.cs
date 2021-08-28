@@ -11,14 +11,14 @@ namespace MedalhasOlimpiadas.Models
     {
         private DalAtleta dalAtleta = new DalAtleta();
 
-        public EntAtleta Inserir(EntAtleta objAtleta)
+        public EntAtleta Inserir(EntAtleta objAtleta) //Faz o 'meio de campo' da conexão com o banco e da controller
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = db;
 
             try
             {
-                dalAtleta.Inserir(objAtleta, cmd);
+                dalAtleta.Inserir(objAtleta, cmd); //Chama método de inserção de atleta passando o objeto
             }
             catch (Exception ex)
             {
@@ -58,7 +58,7 @@ namespace MedalhasOlimpiadas.Models
 
             try
             {
-                objAtleta.Ativo = !objAtleta.Ativo;
+                objAtleta.Ativo = !objAtleta.Ativo; //Faz a função de ativar ou inativar um atleta através do campo ativo
                 dalAtleta.Remover(objAtleta, cmd);
             }
             catch (Exception ex)
