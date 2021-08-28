@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MedalhasOlimpiadas.Models.EntMedalha>
+@{
+    ViewData["Title"] = "Medalha";
+}
+
+    <div class="container">
+        <div class="divGrid">
+            <button type="button" class="btn btn-dark" onClick="detalhesAjax('Medalha', 0)">Criar Medalha</button>
+            <hr />
+            <h2>Filtros de Pesquisa</h2>
+            @using (Html.BeginForm("MedalhaFiltro", "Medalha", FormMethod.Post, new { id = "formPesquisa" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <select id="ddlAtleta" name="ddlAtleta" class="custom-select">
+                            <option value="">Atleta</option>
+                            @foreach (EntAtleta obj in new BllAtleta().ObterTodos(0, 0, "", 1))
+                            {
+                                <option value="@obj.IdAtleta">@obj.NomePais</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <select id="ddlTipoMedalha" name="ddlTipoMedalha" class="custom-select">
+                            <option value="">Tipo de Medalha</option>
+                            <option value="1">Ouro</option>
+                            <option value="2">Prata</option>
+                            <option value="3">Bronze</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <select id="ddlAtivo" name="ddlAtivo" class="custom-select">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                            <option value="2">Todos</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            }
+        </div>
+
+        <div class="divPesquisa"></div>
+
+        <div class="divForm"></div>
+    </div>

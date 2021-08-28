@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MedalhasOlimpiadas.Models.EntAtleta>
+@{
+    ViewData["Title"] = "Atleta";
+}
+
+    <div class="container">
+        <div class="divGrid">
+            <button type="button" class="btn btn-dark" onClick="detalhesAjax('Atleta', 0)">Criar Atleta</button>
+            <hr />
+            <h2>Filtros de Pesquisa</h2>
+            @using (Html.BeginForm("AtletaFiltro", "Atleta", FormMethod.Post, new { id = "formPesquisa" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <input type="text" class="form-control" id="txtNome" name="txtNome" placeholder="Nome">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <select id="ddlModalidade" name="ddlModalidade" class="custom-select">
+                                <option value="">Modalidade</option>
+                                @foreach (EntModalidade obj in new BllModalidade().ObterTodos("", 2, 1))
+                                {
+                                    <option value="@obj.IdModalidade">@obj.ModalidadeGenero</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <select id="ddlPais" name="ddlPais" class="custom-select">
+                                <option value="">País</option>
+                                @foreach (EntPais obj in new BllPais().ObterTodos("", 1))
+                                {
+                                    <option value="@obj.IdPais">@obj.Nome</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <select id="ddlAtivo" name="ddlAtivo" class="custom-select">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                            <option value="2">Todos</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            }
+        </div>
+
+        <div class="divPesquisa"></div>
+
+        <div class="divForm"></div>
+    </div>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MedalhasOlimpiadas.Models.EntMedalha>
+@{
+    ViewData["Title"] = "Home";
+}
+
+    <div class="container">
+        <div class="divGrid">
+            <h2>Filtros de Pesquisa</h2>
+            @using (Html.BeginForm("HomeFiltro", "Home", FormMethod.Post, new { id = "formPesquisa" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <select id="ddlModalidade" name="ddlModalidade" class="custom-select">
+                                <option value="">Modalidade</option>
+                                @foreach (EntModalidade obj in new BllModalidade().ObterTodos("", 2, 1))
+                                {
+                                    <option value="@obj.IdModalidade">@obj.ModalidadeGenero</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <select id="ddlIsMulher" name="ddlIsMulher" class="custom-select">
+                            <option value="2">Todos</option>
+                            <option value="0">Masculino</option>
+                            <option value="1">Feminino</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            }
+        </div>
+
+        <div class="divPesquisa"></div>
+
+        <div class="divForm"></div>
+    </div>

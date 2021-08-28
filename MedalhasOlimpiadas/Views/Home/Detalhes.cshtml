@@ -1,0 +1,60 @@
+﻿@model MedalhasOlimpiadas.Models.EntPais
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <h2>@((Model as EntPais).Nome)</h2>
+    <img src="@((Model as EntPais).Bandeira)" style="width: 50px;"/>
+    <div class="olympic-medal-board">
+        <table class="table-medal">
+            <thead>
+                <tr class="table-medal-row">
+                    <td>
+                        <span>MODALIDADES</span>
+                    </td>
+                    <td class="medals">
+                        <img src="~/Images/gold-medal.png" alt="Medalha de Ouro">
+                    </td>
+                    <td class="medals">
+                        <img src="~/Images/silver-medal.png" alt="Medalha de Prata">
+                    </td>
+                    <td class="medals">
+                        <img src="~/Images/bronze-medal.png" alt="Medalha de Bronze">
+                    </td>
+                    <td>
+                        <span>TOTAL</span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (EntMedalha obj in new BllMedalha().ObterTodosPorPais((Model as EntPais).IdPais, 1))
+                {
+                    <tr class="country">
+                        <td>
+                            <div class="info">
+                                <span class="position">@obj.posicaoQuadro</span>
+                                <div class="flag">
+                                    <span class="country-name">@obj.Atleta.Modalidade.ModalidadeGenero</span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <span>@obj.quantidadeOuro</span>
+                        </td>
+                        <td>
+                            <span>@obj.quantidadePrata</span>
+                        </td>
+                        <td>
+                            <span>@obj.quantidadeBronze</span>
+                        </td>
+                        <td>
+                            <span>@obj.quantidadeMedalha</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
