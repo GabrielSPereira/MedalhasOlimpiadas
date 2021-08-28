@@ -1,5 +1,5 @@
 # Medalhas Olímpicas 🏅
-[<img src="https://i.imgur.com/0u0ZmMR.png">](https://medalhasolimpicas.azurewebsites.net/)
+[<img src="https://i.imgur.com/0u0ZmMR.png" target="_blank">](https://medalhasolimpicas.azurewebsites.net/)
 ##  🏋️‍♀️Sobre
 - **Medalhas Olímpicas** é uma plataforma de consulta e registro de medalhas e atletas olímpicos. Nela é possível cadastrar atletas especificando sua categoria e seu país, e então compará-los em um ranking por quantidades de medalhas.
 ## ## 💻Run this App
