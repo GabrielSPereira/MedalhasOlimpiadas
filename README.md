@@ -2,6 +2,7 @@
 [<img src="https://i.imgur.com/0u0ZmMR.png" target="_blank">](https://medalhasolimpicas.azurewebsites.net/)
 ##  🏋️‍♀️Sobre
 - **Medalhas Olímpicas** é uma plataforma de consulta e registro de medalhas e atletas olímpicos. Nela é possível cadastrar atletas especificando sua categoria e seu país, e então compará-los em um ranking por quantidades de medalhas.
+- A classificação do ranking não é por número absoluto de medalhas, e sim por seu valor. Dessa forma, um país que tenha uma medalha de ouro e uma de prata está acima de um país que tenha uma de ouro e duas de bronze.
 ## ## 💻Run this App
 ```
 #clonando o repositório
