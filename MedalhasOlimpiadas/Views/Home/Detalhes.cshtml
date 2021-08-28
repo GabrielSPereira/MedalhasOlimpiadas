@@ -30,6 +30,7 @@
             <tbody>
                 @foreach (EntMedalha obj in new BllMedalha().ObterTodosPorPais((Model as EntPais).IdPais, 1))
                 {
+                    obj.Atleta.Modalidade = new BllModalidade().ObterPorId(obj.Atleta.Modalidade.IdModalidade);
                     <tr class="country">
                         <td>
                             <div class="info">

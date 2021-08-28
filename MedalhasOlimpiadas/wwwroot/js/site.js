@@ -71,3 +71,22 @@ function removeAjax(entidade, id) {
         });
     } 
 }
+
+function selectDisable(campo) {
+    $("#ddlIsMulher").removeAttr('disabled');
+    $("#ddlModalidade").removeAttr('disabled');
+
+    if (campo == 'ddlModalidade') {
+        var valor = $('#ddlModalidade').val();
+        if (valor > 0) {
+            $("#ddlIsMulher").attr('disabled', 'disabled');
+            $('#ddlIsMulher').val(2);
+        }
+    } else if (campo == 'ddlIsMulher') {
+        var valor = $('#ddlIsMulher').val();
+        if (valor != 2) {
+            $("#ddlModalidade").attr('disabled', 'disabled');
+            $('#ddlModalidade').val('');
+        }
+    }
+}

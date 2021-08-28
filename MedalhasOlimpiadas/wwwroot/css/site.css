@@ -39,6 +39,15 @@ html {
   }
 }
 
+.divGrid {
+    margin-bottom: 15px;
+}
+
+#informa {
+    font-size: 14px;
+    color: gray;
+}
+
 .imgTable {
     height: 17px;
     width: 40px;

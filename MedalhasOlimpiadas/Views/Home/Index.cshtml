@@ -6,6 +6,7 @@
     <div class="container">
         <div class="divGrid">
             <h2>Filtros de Pesquisa</h2>
+            <p id="informa">Clique em "Pesquisar" sem aplicar filtros para visualizar o quadro completo de medalhas</p>
             @using (Html.BeginForm("HomeFiltro", "Home", FormMethod.Post, new { id = "formPesquisa" }))
             {
                 @Html.AntiForgeryToken()
@@ -13,7 +14,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <select id="ddlModalidade" name="ddlModalidade" class="custom-select">
+                            <select id="ddlModalidade" name="ddlModalidade" class="custom-select" onchange="selectDisable('ddlModalidade')">
                                 <option value="">Modalidade</option>
                                 @foreach (EntModalidade obj in new BllModalidade().ObterTodos("", 2, 1))
                                 {
@@ -23,7 +24,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <select id="ddlIsMulher" name="ddlIsMulher" class="custom-select">
+                        <select id="ddlIsMulher" name="ddlIsMulher" class="custom-select" onchange="selectDisable('ddlIsMulher')">
                             <option value="2">Todos</option>
                             <option value="0">Masculino</option>
                             <option value="1">Feminino</option>
