@@ -18,7 +18,7 @@ Primeiro precisamos rodar o medalhas.sql na IDE SQL EXPRESS, abrir o projeto pel
 -   [restcountries](https://restcountries.eu/)
 
 
-#  Doc API MedalhasOlimpiadas
+#  Doc API 
 
 
 ## Endpoints
